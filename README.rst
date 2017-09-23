@@ -356,6 +356,19 @@ To run ``django_rq``'s test suite::
     `which django-admin.py` test django_rq --settings=django_rq.test_settings --pythonpath=.
 
 
+========================
+Development using Docker
+========================
+
+To start the sample project::
+
+   docker-compose --file docker-compose-dev.yml build
+   docker-compose --file docker-compose-dev.yml up
+
+To run the tests:
+
+   docker-compose --file docker-compose-dev.yml
+
 ===================
 Deploying on Heroku
 ===================

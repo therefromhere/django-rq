@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'djangorqdb',
         'USER': 'djangorqusr',
         'PASSWORD': 'djangorqusr',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
         'CONN_MAX_AGE': 10 * 60,
         'ATOMIC_REQUESTS': True,
@@ -129,8 +129,10 @@ STATIC_URL = '/static/'
 
 RQ_QUEUES = {
     'default': {
-        'HOST': 'localhost',
+        'HOST': 'redis',
         'PORT': 6379,
         'DB': 0,
     }
 }
+
+RQ_SHOW_ADMIN_LINK = True

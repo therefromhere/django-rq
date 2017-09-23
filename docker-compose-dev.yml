@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+  db:
+    image: postgres
+    environment: 
+        POSTGRES_USER: djangorqusr
+        POSTGRES_PASSWORD: djangorqusr
+        POSTGRES_DB: djangorqdb
+  redis:
+    image: redis
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    image: djangorq-web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    links:
+      - db
+      - redis
+    depends_on:
+      - db
+      - migration
+  migration:
+    image: djangorq-web
+    command: python manage.py migrate --noinput
+    volumes:
+      - .:/code
+    links:
+      - db
